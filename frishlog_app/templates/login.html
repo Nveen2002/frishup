@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+ 
+</head>
+<style>
+.screen{
+    height: 300px;
+    width: 478px;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 352px;
+
+    }
+</style>
+<body>
+    <div>
+        <h1>Login</h1>
+
+<img src="{% static 'css/img/frisup.jpg' %}" alt="" class="screen" >   
+        
+<form method="post" action="{% url 'loginn' %}">
+    
+    {% csrf_token %}
+    <i class="fa-solid fa-envelope"></i>
+    <input type="email" name="email" placeholder="Enter your email"><br><br>
+
+    <i class="fa-solid fa-lock"></i>
+    <input type="password" name="password" placeholder="Enter your password"><br><br>
+
+</form>
+
+
+            <a href="#">Forgot password?</a><br><br>
+
+            <button type="submit" class="switch">Login</button><br><br>
+
+            Don't have an account? <span style="color:rgb(99, 16, 73);font-weight:bold;">Sign up now</span>
+                
+            {% if form.errors %}
+                <ul>
+                    {% for field, errors in form.errors.items %}
+                        {% for error in errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
+
